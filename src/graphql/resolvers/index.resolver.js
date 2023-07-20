@@ -1,4 +1,4 @@
-import sayHelloResolver from "./sayHello.resolver";
+import sayHelloResolver from "./sayHello.resolver.js";
 
 const resolvers = {
   Query: {

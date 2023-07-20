@@ -2,26 +2,29 @@
   "name": "best-time-to-ride",
   "version": "1.0.0",
   "description": "caculate the shortest time from departure bus station to destination based on the boarding time",
-  "main": "index.ts",
+  "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon",
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "build:live": "nodemon --exec node --loader ts-node/esm src/index.ts"
+    "build:live": "nodemon --exec node /src/index.js"
   },
   "author": "jaewon choi",
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.7.4",
+    "axios": "^1.4.0",
+    "cron": "^2.3.1",
+    "dotenv": "^16.3.1",
     "graphql": "^16.7.1",
+    "moment": "^2.29.4",
     "mysql2": "^3.4.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "0.3.17"
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
-    "axios": "^1.4.0",
-    "moment": "^2.29.4",
     "nodemon": "^2.0.22"
   }
 }

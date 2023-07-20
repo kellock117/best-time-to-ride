@@ -1,10 +1,10 @@
 const typeDefs = `#graphql
     type Query {
-        say: string
+        say: String
     }
 
     type Mutation {
-        sayH: string
+        sayH: String
     }
 `;
 

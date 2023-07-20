@@ -209,11 +209,15 @@ export const cityToIndex = {
   화성: 27,
 };
 
-export const mysql = mysql2.createPool(process.env.DATABASE_URL).promise();
-
-// {
-//   host: process.env.MYSQL_HOST,
-//   user: process.env.MYSQL_USER,
-//   password: process.env.MYSQL_PASSWORD,
-//   database: process.env.MYSQL_DATABASE,
-// }
+// export const mysql = mysql2.createPool(process.env.DATABASE_URL).promise();
+export const mysql = mysql2
+  .createPool({
+    database: process.env.MYSQL_DATABASE,
+    user: process.env.MYSQL_USER,
+    host: process.env.MYSQL_HOST,
+    password: process.env.MYSQL_PASSWORD,
+    // port: process.env.MYSQL_PORT,
+    dateStrings: true,
+    ssl: { rejectUnauthorized: true },
+  })
+  .promise();

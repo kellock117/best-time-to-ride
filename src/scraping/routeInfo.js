@@ -28,10 +28,10 @@ const getRouteInfo = async () => {
 
     const routeTypeName = data?.routeTypeName;
     const routeName = data?.routeName.toString();
-    const adminName = data?.adminName.toString();
+    const regionName = data?.regionName.toString();
 
     if (routeTypeName !== undefined || routeName !== undefined)
-      routeInfo[routeId] = { routeTypeName, routeName, adminName };
+      routeInfo[routeId] = { routeTypeName, routeName, regionName };
   }
 
   const routeInfoJSON = JSON.stringify(routeInfo);
@@ -90,25 +90,19 @@ const saveRouteInfo = async () => {
   });
 
   const data = JSON.parse(file);
-  const query = `INSERT INTO ROUTE_INFO(routeId, routeTypeName, routeName, adminName) VALUES (?, ?, ?, ?)`;
+  const query = `INSERT INTO ROUTE_INFO(routeId, routeTypeName, routeName, regionName) VALUES (?, ?, ?, ?)`;
 
   for (const routeId of Object.keys(data)) {
     const routeTypeName = data[routeId].routeTypeName;
     const routeName = data[routeId].routeName;
-    const adminName = data[routeId].adminName;
+    const regionName = data[routeId].regionName;
 
     const values = [
       Number(routeId),
       routeTypeNameToIndex[routeTypeName],
       routeName,
-      adminName,
+      regionName,
     ];
-
-    // console.log(
-    //   Number(routeId),
-    //   routeTypeNameToIndex[routeTypeName],
-    //   routeName
-    // );
 
     await mysql.execute(query, values, (err, result) => {
       if (err) console.log(err);
@@ -119,4 +113,5 @@ const saveRouteInfo = async () => {
   mysql.end();
 };
 
-saveRouteInfo();
+await getRouteInfo();
+await saveRouteInfo();
